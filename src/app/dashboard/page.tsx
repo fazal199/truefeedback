@@ -62,7 +62,7 @@ const Dashboard = () => {
     } finally {
       setisSwitchingLoading(false);
     }
-  }, [setValue]);
+  }, [setValue,toast]);
 
   const fetchMessages = useCallback(
     async (refresh: boolean = false ) => {
@@ -92,11 +92,11 @@ const Dashboard = () => {
         setisSwitchingLoading(false);
       }
     },
-    [setLoading, setMessages]
+    [setLoading, setMessages,toast]
   );
 
   useEffect(() => {
-    if (!session && !session?.user) return;
+    if (!session?.user && !session) return;
 
     fetchMessages();
     fetchAcceptingMessage();
